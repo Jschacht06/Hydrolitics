@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -10,11 +11,14 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useActionState } from "react"
+import { login } from "./action"
 
 export default function Login() {
+  const [state , loginAction] = useActionState(login, undefined);
   return ( 
     <div className="flex items-center justify-center h-screen bg-gray-100">
-  <Card className="w-full max-w-sm flex">
+  <Card  className="w-full max-w-sm flex">
       <CardHeader>
         <CardTitle>Login to your account</CardTitle>
         <CardDescription>
@@ -22,8 +26,10 @@ export default function Login() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form action={loginAction}>
           <div className="flex flex-col gap-6">
+            {state?.errors?.email && 
+            (<p className="text-red-500">{state.errors.email}</p>) }  
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -38,6 +44,8 @@ export default function Login() {
               </div>
               <Input id="password" type="password" required />
             </div>
+            {state?.errors?.password && 
+            (<p className="text-red-500">{state.errors.password}</p>) }
           </div>
         </form>
       </CardContent>
