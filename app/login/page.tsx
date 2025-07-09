@@ -25,33 +25,33 @@ export default function Login() {
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
-<CardContent>
-  <form action={loginAction}>
-    <div className="flex flex-col gap-6">
-      {state?.errors?.email && 
-      (<p className="text-red-500">{state.errors.email}</p>)}  
+        <CardContent>
+          <form action={loginAction}>
+            <div className="flex flex-col gap-6">
+              {state?.errors?.email &&
+                (<p className="text-red-500">{state.errors.email}</p>)}
 
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" required />
-      </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" name="email" type="email" required />
+              </div>
 
-      <div className="grid gap-2">
-        <div className="flex items-center">
-          <Label htmlFor="password">Password</Label>
-        </div>
-        <Input id="password" name="password" type="password" required />
-      </div>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">Password</Label>
+                </div>
+                <Input id="password" name="password" type="password" required />
+              </div>
 
-      {state?.errors?.password && 
-      (<p className="text-red-500">{state.errors.password}</p>) }
+              {state?.errors?.password &&
+                (<p className="text-red-500">{state.errors.password}</p>)}
 
-      <Button type="submit" className="w-full">
-        Login
-      </Button>
-    </div>
-  </form>
-</CardContent>
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </div>
+          </form>
+        </CardContent>
       </Card>
     </div>
   )
