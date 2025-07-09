@@ -3,6 +3,11 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 const secretKey = process.env.SESSION_SECRET;
+
+if (!secretKey) {
+  throw new Error("SESSION_SECRET environment variable is not set");
+}
+
 const encodedKey = new TextEncoder().encode(secretKey);
 
 export async function createSession(userId: string) {
